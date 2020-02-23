@@ -12,10 +12,10 @@ $(document).ready(function () {
             var OSAPIKey = "9f5d48e148b27324806dd9c7d61410ce";
             var queryurl = "https://www.opensecrets.org/api/?method=candIndustry&cid=" + crpid + "&output=json&cycle=2020&apikey=" + OSAPIKey;
 
-
+            console.log("FETCHING WITH FETCH");
             fetch(queryurl)
                 .then((response) => {
-                    // console.log("FETCH #1 RESPONSE FROM SECRETS", response);
+                    console.log("FETCH #1 RESPONSE FROM SECRETS", response);
                     return response.json();
                 })
                 .then((myJson) => {
