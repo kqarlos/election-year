@@ -150,7 +150,7 @@ module.exports = function (sequelize, DataTypes) {
 
 ## Github Links
 
-- [Link to site repository](https://github.com/boundsalexis/election-year)
+- [Link to site repository](https://github.com/kqarlos/election-year)
 - [Alexis Bounds](https://github.com/boundsalexis)
 - [Ian Toy](https://github.com/ietoy)
 - [Carlos Toledo](https://www.github.com/kqarlos)
