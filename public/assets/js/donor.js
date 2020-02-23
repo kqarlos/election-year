@@ -11,12 +11,32 @@ $(document).ready(function () {
             // var OSAPIKey = "55bbf9d8ccd398720b6d6769ebe66440";
             var OSAPIKey = "9f5d48e148b27324806dd9c7d61410ce";
             var queryurl = "https://www.opensecrets.org/api/?method=candIndustry&cid=" + crpid + "&output=json&cycle=2020&apikey=" + OSAPIKey;
-            $.get(queryurl).then(function (data) {
-                var industries = JSON.parse(data).response.industries.industry;
-                industries = industries.map(i => i['@attributes']);
 
-                resolve(industries)
-            });
+
+            fetch(queryurl)
+                .then((response) => {
+                    // console.log("FETCH #1 RESPONSE FROM SECRETS", response);
+                    return response.json();
+                })
+                .then((myJson) => {
+                    console.log("FETCH #2 RESPONSE FROM SECRETS", myJson);
+                    let industries = myJson.response.industries.industry;
+                    industries = industries.map(i => i['@attributes']);
+                    console.log("FETCH #2 RESPONSE INDUSTRIES", industries);
+                    resolve(industries);
+                });
+
+
+            // $.get(queryurl).then(function (data) {
+            //     console.log("AJAX RESPONSE FROM SECRETS", data);
+            //     let industries = JSON.parse(data).response.industries.industry;
+            //     industries = industries.map(i => i['@attributes']);
+            //     console.log("AJAX RESPONSE INDUSTRIES", industries);
+            //     resolve(industries)
+            // });
+
+
+
         });
     }
     // when rep page is loaded the crpid is on the page but it is hidden, we grab it
