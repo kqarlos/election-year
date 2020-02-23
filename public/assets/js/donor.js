@@ -12,19 +12,38 @@ $(document).ready(function () {
             var OSAPIKey = "9f5d48e148b27324806dd9c7d61410ce";
             var queryurl = "https://www.opensecrets.org/api/?method=candIndustry&cid=" + crpid + "&output=json&cycle=2020&apikey=" + OSAPIKey;
 
-            console.log("FETCHING WITH FETCH + CORS");
-            fetch(queryurl)
-                .then((response) => {
-                    console.log("FETCH #1 RESPONSE FROM SECRETS", response);
-                    return response.json();
+
+            //https://electionyear2020.herokuapp.com/
+
+            var proxyUrl = 'https://electionyear2020.herokuapp.com/',
+                targetUrl = queryurl;
+            fetch(proxyUrl + targetUrl)
+                .then(blob => blob.json())
+                .then(data => {
+                    console.table(data);
+                    console.log("FETCH PROXY #2", data);
+                    // document.querySelector("pre").innerHTML = JSON.stringify(data, null, 2);
+                    resolve(data);
                 })
-                .then((myJson) => {
-                    console.log("FETCH #2 RESPONSE FROM SECRETS", myJson);
-                    let industries = myJson.response.industries.industry;
-                    industries = industries.map(i => i['@attributes']);
-                    console.log("FETCH #2 RESPONSE INDUSTRIES", industries);
-                    resolve(industries);
+                .catch(e => {
+                    console.log(e);
+                    return e;
                 });
+
+
+            // console.log("FETCHING WITH FETCH + CORS");
+            // fetch(queryurl)
+            //     .then((response) => {
+            //         console.log("FETCH #1 RESPONSE FROM SECRETS", response);
+            //         return response.json();
+            //     })
+            //     .then((myJson) => {
+            //         console.log("FETCH #2 RESPONSE FROM SECRETS", myJson);
+            //         let industries = myJson.response.industries.industry;
+            //         industries = industries.map(i => i['@attributes']);
+            //         console.log("FETCH #2 RESPONSE INDUSTRIES", industries);
+            //         resolve(industries);
+            //     });
 
 
             // $.get(queryurl).then(function (data) {
