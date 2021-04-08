@@ -31,12 +31,10 @@ app.use(function(req, res, next) {
 
 var db = require("./models");
 
-
-
-
 ////Routes
-require("./routes/html-routes.js")(app);
-require("./routes/api-routes.js")(app);
+
+const routes = require("./routes");
+app.use(routes);
 
 
 db.sequelize.sync().then(function () {
