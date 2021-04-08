@@ -1,6 +1,6 @@
 {
-  "name": "tinfoil-hat",
-  "version": "1.0.0",
+  "name": "election-year",
+  "version": "1.5.0",
   "description": "Track your representatives and their voting history",
   "main": "server.js",
   "scripts": {
@@ -9,17 +9,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/boundsalexis/tinfoil-hat.git"
+    "url": "git+https://github.com/kqarlos/election-year.git"
   },
   "keywords": [
-    "politics"
+    "politics",
+    "election"
   ],
-  "author": "election",
-  "license": "ISC",
+  "author": "Carlos Toledo, Alexis Bounds, Ian Toy",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/boundsalexis/tinfoil-hat/issues"
+    "url": "https://github.com/kqarlos/election-year/issues"
   },
-  "homepage": "https://github.com/boundsalexis/tinfoil-hat#readme",
+  "homepage": "https://electionyear2020.herokuapp.com/",
   "dependencies": {
     "axios": "^0.19.2",
     "chart.js": "^2.9.3",
