@@ -5,7 +5,7 @@ $(document).ready(function () {
     //modify profile route if user is logged in
     if (localStorage.getItem("User")) {
         var id = JSON.parse(localStorage.getItem("User"))[0];
-        $("#profile").attr("href", "/api/user/" + id)
+        $("#profile").attr("href", "/api/users/" + id)
     }
 
     /////////////// *********index***********/////////////////
@@ -19,9 +19,9 @@ $(document).ready(function () {
     })
     login = data => {
 
-        $.get("/api/login/" + data.email + "/" + data.password, function (res) {
+        $.get("/api/users/login/" + data.email + "/" + data.password, function (res) {
             console.log(res);
-            window.location = "/api/user/" + res;
+            window.location = "/api/users/" + res;
         })
     }
 
@@ -89,7 +89,7 @@ $(document).ready(function () {
 
                     handleUserInput();
 
-                    var queryString = "/api/senator/" +
+                    var queryString = "/api/congress/senator/" +
                         partyAbrv + "/" +
                         searchState + "/" +
                         genderAbrv + "/"
@@ -150,7 +150,7 @@ $(document).ready(function () {
 
                     handleUserInput();
 
-                    var queryString = "/api/representative/" +
+                    var queryString = "/api/congress/representative/" +
                         partyAbrv + "/" +
                         searchState + "/" +
                         genderAbrv + "/"
@@ -179,23 +179,14 @@ $(document).ready(function () {
     })
     ///
     loadSenator = event => {
-        let query = "/api/senatorprofile/" + event.target.id;
+        let query = "/api/congress/senatorprofile/" + event.target.id;
         window.location = query;
     }
     loadRep = event => {
-        let query = "/api/representativeprofile/" + event.target.id;
+        let query = "/api/congress/representativeprofile/" + event.target.id;
         window.location = query;
     }
     /////////handle table clicks////////
-
-    loadSenator = event => {
-        let query = "/api/senatorprofile/" + event.target.id;
-        window.location = query;
-    }
-    loadRep = event => {
-        let query = "/api/representativeprofile/" + event.target.id;
-        window.location = query;
-    }
     $(document).on("click", ".member", loadSenator);
     $(document).on("click", ".rep", loadRep)
 
@@ -215,7 +206,7 @@ $(document).ready(function () {
 
     addCredential = (data) => {
 
-        $.post("/api/addcredential", data).then(res => {
+        $.post("/api/users/addcredential", data).then(res => {
         })
         document.location.reload();
     }

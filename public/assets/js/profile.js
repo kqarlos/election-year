@@ -10,10 +10,10 @@ $(document).ready(function () {
     }
 
     function displayUsersReps(userId) {
-        $.ajax("/api/user/" + userId, {
+        $.ajax("/api/users/" + userId, {
             type: "GET"
         }).then(function (response) {
-            $.get("/api/senatorByState/" + state).then(function (data) {
+            $.get("/api/congress/senatorByState/" + state).then(function (data) {
                 newRow = $("<tr>");
                 newRow.append("<th>Name</th>");
                 $("#senators").append(newRow);
@@ -24,7 +24,7 @@ $(document).ready(function () {
 
                 }
             });
-            $.get("/api/representativeByState/" + state).then(function (data) {
+            $.get("/api/congress/representativeByState/" + state).then(function (data) {
                 newRow = $("<tr>");
                 newRow.append("<th>Name</th>");
                 newRow.append("<th>District</>");
@@ -43,11 +43,11 @@ $(document).ready(function () {
 
     //Adds events listeners to representatives in profile page
     loadSenator = event => {
-        let query = "/api/senatorprofile/" + event.target.id;
+        let query = "/api/congress/senatorprofile/" + event.target.id;
         window.location = query;
     }
     loadRep = event => {
-        let query = "/api/representativeprofile/" + event.target.id;
+        let query = "/api/congress/representativeprofile/" + event.target.id;
         window.location = query;
     }
     $(document).on("click", ".member", loadSenator);
